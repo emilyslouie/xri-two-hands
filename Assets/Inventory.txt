@@ -1,0 +1,18 @@
+All templates modified to use the "Global/Prefabs/Complete Set Up" prefab instead of their own individual XR rigs
+
+VRTemplate - The current VR Template that ships in the Hub
+	VRTemplate/Scenes/SampleScene
+
+
+XRISampleProject - The XRI samples that can be found on GitHub
+	XRISampleProject/Scenes/WorldInteractionDemo - The demo main demo scene, with little stands/kiosks for each feature
+	XRISampleProject/VR Examples/Scenes/* - Bespoke scenes for each feature.  Not just the kiosk, but a completely different setup
+
+
+DOTSample - The DOTS Sample with lots of whiteboxing pieces within
+	DOTSample/Scenes/Whitebox_* - Scenes of different environment setups.  Teleporters currently inactive. XR setups put in place but scene geo not yet wired for locomotion.
+
+Hackweek2020 - The collaboration scene made during the XRT 2020 hackweek.
+	Hackweek2020/Scenes/Collabspace - The scene in question.  Haptics have been removed, but should be able to teleport around, use the teleportation menu, grab and interact with the fidget spinner, washing machine, metal detector, and toothbrush.
+
+Learn samples - In place but not yet tested. More details to come.
