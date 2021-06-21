@@ -72,3 +72,4 @@ crashlytics-build.properties
 
 ignore.conf
 .plastic/
+.vsconfig
