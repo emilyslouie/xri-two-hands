@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Flame
   - Projectile
+  - Box
+  - HockeyStick
   layers:
   - Default
   - TransparentFX
@@ -13,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Weapon
+  - Projectile
+  - Controller
+  - Arrow
   - 
   - 
   - 

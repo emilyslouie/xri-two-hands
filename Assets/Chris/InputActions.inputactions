@@ -1,0 +1,87 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Main",
+            "id": "4050f977-dc46-406c-bc5b-b372362f4ab5",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "08f8f4d4-9211-481c-8697-fb7c6bc5f1ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2e1fb97b-bec5-4393-ade5-238463f680b0",
+                    "path": "<XRController>{LeftHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "LeftHand",
+            "id": "67765ad6-3b5f-4fd4-8ada-f18344178cb8",
+            "actions": [
+                {
+                    "name": "Toggle Ray",
+                    "type": "Button",
+                    "id": "8ffadf10-48a6-4951-8cfb-a575b7552d56",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7c9d826e-b8f0-47ce-ab37-269f6a0fbf53",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Ray",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "RightHand",
+            "id": "f5198f6a-da0e-40b8-a361-d2a829df9ffb",
+            "actions": [
+                {
+                    "name": "Toggle Ray",
+                    "type": "Button",
+                    "id": "144c8903-f982-42ea-8189-fbf6c48c91f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "97edc409-cfda-4fa2-9a3a-3c7539b5c6a8",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Ray",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

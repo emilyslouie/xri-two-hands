@@ -95,7 +95,7 @@ Material:
     - _WaveSpeed: 0
     - _ZWrite: 1
     m_Colors:
-    - _Center: {r: 1.5417922, g: 1.2758521, b: -1.3036228, a: 0}
+    - _Center: {r: 1.4469454, g: 1.0470058, b: -1.5427227, a: 0}
     - _Color: {r: 0.09411765, g: 0.4392157, b: 0.7137255, a: 1}
     - _DecalPositionOffset: {r: 0, g: 0, b: 0, a: 0}
     - _DecalSize: {r: 1, g: 1, b: 0, a: 0}

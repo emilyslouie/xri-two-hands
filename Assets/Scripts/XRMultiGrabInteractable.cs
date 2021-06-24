@@ -4,12 +4,41 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
 {
-    static readonly List<Pose> k_InteractorPoses = new List<Pose>();
+    [SerializeField, Range(0f, 1f)]
+    float m_LerpParameter = 0.5f;
 
+    public float lerpParameter
+    {
+        get => m_LerpParameter;
+        set => m_LerpParameter = value;
+    }
 
-    List<XRBaseInteractor> m_SecondaryInteractors = new List<XRBaseInteractor>();
+    [SerializeField]
+    float m_Dot;
 
-    bool m_SecondarySelection = false;
+    [SerializeField]
+    bool m_ShortWay;
+
+    [SerializeField]
+    int m_SlerpMethod;
+
+    [SerializeField]
+    bool m_InverseQuaternion0;
+    [SerializeField]
+    bool m_InverseQuaternion1;
+    [SerializeField]
+    bool m_InverseQuaternionSlerp;
+    [SerializeField]
+    bool m_InverseQuaternionFinal;
+
+    readonly List<Pose> k_InteractorPoses = new List<Pose>();
+    protected List<Pose> interactorPoses => k_InteractorPoses;
+
+    readonly List<XRBaseInteractor> m_SecondaryInteractors = new List<XRBaseInteractor>();
+    protected List<XRBaseInteractor> secondaryInteractors => m_SecondaryInteractors;
+
+    protected bool m_SecondarySelection;
+    protected bool secondarySelection => m_SecondarySelection;
 
     protected override void Awake()
     {
@@ -23,6 +52,7 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
             attachTransform = newAttach;
         }
     }
+
     protected override void OnSelectEntering(SelectEnterEventArgs args)
     {
         // No grab? Use base
@@ -49,6 +79,7 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
             // Hack - If using a dynamic attach, re-trigger the recentering code
             RecenterDynamicAttach();
         }
+
         m_SecondarySelection = false;
     }
 
@@ -79,12 +110,31 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
             {
                 var primaryInteractor = m_SecondaryInteractors[0];
                 RemoveSecondarySelection(0);
+
+                Pose? attachTransformPose = null;
+                Pose? originalAttachTransformPose = null;
+                Transform originalAttachTransform = null;
+                if (primaryInteractor is XRRayInteractor)
+                {
+                    attachTransformPose = new Pose(primaryInteractor.attachTransform.position, primaryInteractor.attachTransform.rotation);
+                    originalAttachTransform = primaryInteractor.transform.Find($"[{primaryInteractor.name}] Original Attach");
+                    if (originalAttachTransform != null)
+                        originalAttachTransformPose = new Pose(originalAttachTransform.position, originalAttachTransform.rotation);
+                }
+
                 interactionManager.ForceSelect(primaryInteractor, this);
+
+                if (attachTransformPose.HasValue)
+                    primaryInteractor.attachTransform.SetPositionAndRotation(attachTransformPose.Value.position, attachTransformPose.Value.rotation);
+
+                if (originalAttachTransformPose.HasValue)
+                    originalAttachTransform.SetPositionAndRotation(originalAttachTransformPose.Value.position, originalAttachTransformPose.Value.rotation);
             }
         }
         else
         {
             m_SecondarySelection = false;
+
             // Hack - If using a dynamic attach, re-trigger the recentering code
             RecenterDynamicAttach();
         }
@@ -132,9 +182,13 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
                 // Put final pose into primary transform space
                 attachTransform.position = attachTransform.position + (primaryTransform.position - finalPose.position);
                 attachTransform.rotation = attachTransform.rotation * Quaternion.Inverse(Quaternion.Inverse(primaryTransform.rotation) * finalPose.rotation);
-                k_InteractorPoses.Clear();
+                if (m_InverseQuaternionFinal)
+                {
+                    attachTransform.rotation = Quaternion.Inverse(attachTransform.rotation);
+                }
             }
         }
+
         base.ProcessInteractable(updatePhase);
 
         // Restore the attach transform back to normal
@@ -150,9 +204,19 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
     /// <returns>The desired 'final' pose to be used to position the interactable</returns>
     public virtual Pose ProcessesMultiGrab(List<Pose> influences)
     {
+        m_Dot = Quaternion.Dot(influences[0].rotation, influences[1].rotation);
+
         // Average positions and rotations together
-        var finalPose = new Pose((influences[0].position + influences[1].position) * 0.5f, Quaternion.Slerp(influences[0].rotation, influences[1].rotation, 0.5f));
-        
+        var position = Vector3.Lerp(influences[0].position, influences[1].position, m_LerpParameter);
+        var rotation0 = m_InverseQuaternion0 ? Quaternion.Inverse(influences[0].rotation) : influences[0].rotation;
+        var rotation1 = m_InverseQuaternion1 ? Quaternion.Inverse(influences[1].rotation) : influences[1].rotation;
+        //var rotation = m_Dot < 0f ? Slerp(rotation0, rotation1, m_LerpParameter, m_ShortWay) : Quaternion.Slerp(rotation0, rotation1, m_LerpParameter);
+        //var rotation = m_SlerpMethod == 0 ? Quaternion.Slerp(rotation0, rotation1, m_LerpParameter) : Slerp(rotation0, rotation1, m_LerpParameter, m_ShortWay);
+        var rotation = Slerp(rotation0, rotation1, m_LerpParameter);
+        if (m_InverseQuaternionSlerp)
+            rotation = Quaternion.Inverse(rotation);
+        var finalPose = new Pose(position, rotation);
+
         return finalPose;
     }
 
@@ -160,7 +224,7 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
     {
         // Hack - If using a dynamic attach, re-trigger the recentering code
         var dynamicAttach = attachTransform.GetComponent<DynamicAttach>();
-        if (dynamicAttach != null)
+        if (dynamicAttach != null && dynamicAttach.enabled)
         {
             var primaryTransform = selectingInteractor.attachTransform;
             if (m_SecondaryInteractors.Count > 0)
@@ -185,5 +249,39 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
             else
                 dynamicAttach.Recenter(primaryTransform.position, primaryTransform.rotation);
         }
+    }
+
+    static Quaternion Invert(Quaternion q)
+    {
+        return new Quaternion(-q.x, -q.y, -q.z, -q.w);
+    }
+
+    Quaternion Slerp(Quaternion p, Quaternion q, float t)
+    {
+        switch (m_SlerpMethod)
+        {
+            case 0:
+                return m_Dot < 0f ? Slerp(p, q, t, m_ShortWay) : Quaternion.Slerp(p, q, t);
+            case 1:
+                return Quaternion.Slerp(p, q, t);
+            default:
+                return Slerp(p, q, t, m_ShortWay);
+        }
+    }
+
+    static Quaternion Slerp(Quaternion p, Quaternion q, float t, bool shortWay)
+    {
+        float dot = Quaternion.Dot(p, q);
+        float sign = (shortWay && dot < 0.0f) ? -1f : 1f;
+        float angle = Mathf.Acos(dot * sign);
+        float division = 1f / Mathf.Sin(angle);
+        float t0 = Mathf.Sin((1f - t) * angle) * division * sign;
+        float t1 = Mathf.Sin((t) * angle) * division;
+        return new Quaternion(
+            p.x * t0 + q.x * t1,
+            p.y * t0 + q.y * t1,
+            p.z * t0 + q.z * t1,
+            p.w * t0 + q.w * t1
+        );
     }
 }

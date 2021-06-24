@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9031775881104408020}
   - component: {fileID: 9031775881104408019}
   m_Layer: 0
-  m_Name: SphereProjectile LARGE
+  m_Name: SphereProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &9031775881104408047
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -110,7 +112,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &9031775881104408019
 MonoBehaviour:
   m_ObjectHideFlags: 0

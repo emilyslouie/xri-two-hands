@@ -1,0 +1,128 @@
+fileFormatVersion: 2
+guid: b0f88ca8c38ca9e4daa144b4ad88ce93
+timeCreated: 1467659066
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bunny_Blue_Hair
+    100002: Bunny_Red_Hair
+    100004: //RootNode
+    100006: Chain_Base
+    100008: Chain_Base_Two
+    100010: ChainLink_One
+    100012: ChainLink_Three
+    100014: ChainLink_Two
+    100016: Egg_Blue
+    100018: Egg_Red
+    100020: Handle
+    100022: Handle_Two
+    400000: Bunny_Blue_Hair
+    400002: Bunny_Red_Hair
+    400004: //RootNode
+    400006: Chain_Base
+    400008: Chain_Base_Two
+    400010: ChainLink_One
+    400012: ChainLink_Three
+    400014: ChainLink_Two
+    400016: Egg_Blue
+    400018: Egg_Red
+    400020: Handle
+    400022: Handle_Two
+    2300000: Bunny_Blue_Hair
+    2300002: Bunny_Red_Hair
+    2300004: Chain_Base
+    2300006: Chain_Base_Two
+    2300008: ChainLink_One
+    2300010: ChainLink_Three
+    2300012: ChainLink_Two
+    2300014: Egg_Blue
+    2300016: Egg_Red
+    2300018: Handle
+    2300020: Handle_Two
+    3300000: Bunny_Blue_Hair
+    3300002: Bunny_Red_Hair
+    3300004: Chain_Base
+    3300006: Chain_Base_Two
+    3300008: ChainLink_One
+    3300010: ChainLink_Three
+    3300012: ChainLink_Two
+    3300014: Egg_Blue
+    3300016: Egg_Red
+    3300018: Handle
+    3300020: Handle_Two
+    4300000: ChainLink_Three
+    4300002: ChainLink_Two
+    4300004: ChainLink_One
+    4300006: Chain_Base
+    4300008: Chain_Base_Two
+    4300010: Egg_Blue
+    4300012: Egg_Red
+    4300014: Handle
+    4300016: Handle_Two
+    4300018: Bunny_Red_Hair
+    4300020: Bunny_Blue_Hair
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
