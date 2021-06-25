@@ -6,7 +6,7 @@ public class XRCompoundGrabInteractable : XRGrabInteractable
 {
   [SerializeField]
   [Tooltip("Interactable that becomes available when this interactable is grabbed.")]
-  XRBaseInteractable m_SecondaryInteractable;
+  protected XRBaseInteractable m_SecondaryInteractable;
 
   [SerializeField]
   bool m_AllowTransferSecondaryInteractor = true;
@@ -21,13 +21,16 @@ public class XRCompoundGrabInteractable : XRGrabInteractable
     {
       Debug.LogWarning("No secondary interactable specified, will act as a regular grab interactable");
     }
+    else
+    {
+      m_SecondaryInteractable.enabled = false;
 
-    m_SecondaryInteractable.enabled = false;
-    // Inject a select function that enables the secondary grab
-    selectEntered.AddListener(SetupSecondarySelection);
+      // Inject a select function that enables the secondary grab
+      selectEntered.AddListener(SetupSecondarySelection);
 
-    // Inject a deselect function that disables the secondary grab and potentially steals the interactor
-    selectExited.AddListener(TeardownSecondarySelection);
+      // Inject a deselect function that disables the secondary grab and potentially steals the interactor
+      selectExited.AddListener(TeardownSecondarySelection);
+    }
   }
 
   public override bool IsSelectableBy(XRBaseInteractor interactor)
@@ -40,19 +43,32 @@ public class XRCompoundGrabInteractable : XRGrabInteractable
 
   void SetupSecondarySelection(SelectEnterEventArgs args)
   {
-    // Enable the secondary interactable so it can start receiving input
-    m_SecondaryInteractable.enabled = true;
+    if (m_SecondaryInteractable != null)
+    {
+      // Enable the secondary interactable so it can start receiving input
+      m_SecondaryInteractable.enabled = true;
+    }
   }
 
   void TeardownSecondarySelection(SelectExitEventArgs args)
   {
-    // Transfer the secondary interactor over to this object if it exists
-    // If not, disable the secondary interactable so it doesn't go around stealing inputs early
-    if (m_AllowTransferSecondaryInteractor && m_SecondaryInteractable.selectingInteractor != null)
+    if (m_SecondaryInteractable != null)
     {
-      interactionManager.ForceSelect(m_SecondaryInteractable.selectingInteractor, this);
+      // Transfer the secondary interactor over to this object if it exists
+      // If not, disable the secondary interactable so it doesn't go around stealing inputs early
+      if (m_AllowTransferSecondaryInteractor && m_SecondaryInteractable.selectingInteractor != null)
+      {
+        interactionManager.ForceSelect(m_SecondaryInteractable.selectingInteractor, this);
+      }
+      else
+        m_SecondaryInteractable.enabled = false;
     }
-    else
-      m_SecondaryInteractable.enabled = false;
   }
+
+  //protected override void SetupRigidbodyGrab(Rigidbody rigidbody)
+  //{
+  //  base.SetupRigidbodyGrab(rigidbody);
+  //  rigidbody.isKinematic = true;
+  //}
+
 }

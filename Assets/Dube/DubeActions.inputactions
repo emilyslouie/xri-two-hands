@@ -1,0 +1,60 @@
+{
+    "name": "DubeActions",
+    "maps": [
+        {
+            "name": "Left",
+            "id": "7adf9e1a-f40d-4874-bac9-67730bd04b8b",
+            "actions": [
+                {
+                    "name": "Grip",
+                    "type": "Button",
+                    "id": "43b2c9f7-7549-4fc0-bb9c-43017175c61b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8f297e21-e0db-4bab-84a1-68a8623fa8a1",
+                    "path": "<XRController>{LeftHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Right",
+            "id": "feb5ef95-ef9d-40cf-ac6e-0ae6adae4f54",
+            "actions": [
+                {
+                    "name": "Grip",
+                    "type": "Button",
+                    "id": "b6a0e4cd-9b8e-4ea0-8e28-f6428b0f1b27",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "502dd914-ba51-4ec7-b049-2508f54f9cad",
+                    "path": "<XRController>{RightHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

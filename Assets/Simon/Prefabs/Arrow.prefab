@@ -622,10 +622,10 @@ GameObject:
   - component: {fileID: 4334376635234113245}
   - component: {fileID: 8467361993348685239}
   - component: {fileID: 8969241365174113260}
-  - component: {fileID: 5980667393528463669}
+  - component: {fileID: 5464691303111823876}
   m_Layer: 7
   m_Name: Fletching
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -792,19 +792,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2853050534218559483}
   m_Mesh: {fileID: 0}
---- !u!65 &5980667393528463669
-BoxCollider:
+--- !u!135 &5464691303111823876
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2853050534218559483}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.059306405, y: 0.05, z: 0.05000007}
-  m_Center: {x: 0.020346912, y: -0.0000000028327025, z: 0.025000019}
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0.025}
 --- !u!1 &3758623631767379032
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +901,36 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &4825863070011903954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3663008689548218205}
+  m_Layer: 7
+  m_Name: CenterOfMass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3663008689548218205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825863070011903954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.801}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2761176945401110299}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8231699462844933329
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +1004,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8495518726660217408}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -983,9 +1013,10 @@ Transform:
   - {fileID: 532107064553688603}
   - {fileID: 8285171582587576182}
   - {fileID: 4596466526712016082}
+  - {fileID: 3663008689548218205}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6602706200861694005
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -995,13 +1026,13 @@ Rigidbody:
   m_GameObject: {fileID: 8495518726660217408}
   serializedVersion: 2
   m_Mass: 0.1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.1
+  m_AngularDrag: 0.1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!114 &341978286176200577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,9 +1045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb69ae22b9c36d4ab6890ba419dcad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CenterOfMass: {fileID: 3663008689548218205}
   m_TipCollider: {fileID: 7886862920654030124}
   m_ShaftCollider: {fileID: 1960427780303910903}
-  m_FletchingCollider: {fileID: 5980667393528463669}
+  m_FletchingCollider: {fileID: 5464691303111823876}
   m_IgnoreCollisionMask:
     serializedVersion: 2
     m_Bits: 484
@@ -1092,7 +1124,7 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 4596466526712016082}
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1

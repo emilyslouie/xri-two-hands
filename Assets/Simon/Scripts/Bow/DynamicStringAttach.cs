@@ -34,7 +34,7 @@ public class DynamicStringAttach : MonoBehaviour
 
     // If this is the set attach point, then listen for selection events
     // Otherwise, assume we are a 'secondary' attach point 
-    if (m_GrabInteractable.attachTransform == transform)
+    if (m_GrabInteractable.handAttachTransform == transform)
       m_GrabInteractable.selectEntered.AddListener(SelectEntered);
   }
 

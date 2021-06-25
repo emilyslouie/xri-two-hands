@@ -8,6 +8,9 @@ public class TargetRing : MonoBehaviour, IAnimationEventActionBegin, IAnimationE
     static readonly string k_ActiveLabel = "active";
 
     [SerializeField]
+    UnityEvent m_OnStart;
+
+    [SerializeField]
     UnityEvent m_OnHit;
 
     [SerializeField]
@@ -15,6 +18,11 @@ public class TargetRing : MonoBehaviour, IAnimationEventActionBegin, IAnimationE
 
     [SerializeField]
     UnityEvent m_OnInactive;
+
+    void Start()
+    {
+        m_OnStart.Invoke();
+    }
 
     public void OnHit()
     {

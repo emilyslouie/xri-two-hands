@@ -46,6 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8111339147347066014}
   - component: {fileID: 8111339147347066013}
+  - component: {fileID: 1761176231537056029}
   m_Layer: 0
   m_Name: Input Action Manager
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &1761176231537056029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111339147347066012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a516ed74876269a48bddd39f1524d85e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PauseAction: {fileID: -7995793129611533496, guid: 5a6af0c029aae4540bcaa6e31b085f41,
+    type: 3}
 --- !u!1 &8111339148422905703
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,22 +425,6 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 8111339148422905696}
-    - target: {fileID: 502342291, guid: bb7aa8703285c474ea77fecb3d36818d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 502342291, guid: bb7aa8703285c474ea77fecb3d36818d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 705080846, guid: bb7aa8703285c474ea77fecb3d36818d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 705080846, guid: bb7aa8703285c474ea77fecb3d36818d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.06
-      objectReference: {fileID: 0}
     - target: {fileID: 1319746312, guid: bb7aa8703285c474ea77fecb3d36818d, type: 3}
       propertyPath: m_InteractionManager
       value: 
@@ -494,34 +493,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3842451756951156972, guid: bb7aa8703285c474ea77fecb3d36818d,
+    - target: {fileID: 3110266214317084042, guid: bb7aa8703285c474ea77fecb3d36818d,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ab77abc569f7e4dec9939ec357b56b4a, type: 2}
-    - target: {fileID: 4780639297034574297, guid: bb7aa8703285c474ea77fecb3d36818d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.01
+      propertyPath: m_EnableUIInteraction
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4780639297034574297, guid: bb7aa8703285c474ea77fecb3d36818d,
+    - target: {fileID: 3110266214317084042, guid: bb7aa8703285c474ea77fecb3d36818d,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 6825964813589091696, guid: bb7aa8703285c474ea77fecb3d36818d,
         type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 8111339148422905696}
-    - target: {fileID: 7184100499021095574, guid: bb7aa8703285c474ea77fecb3d36818d,
+    - target: {fileID: 8401195377476286872, guid: bb7aa8703285c474ea77fecb3d36818d,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7184100499021095574, guid: bb7aa8703285c474ea77fecb3d36818d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
+      propertyPath: m_EnableInputTracking
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9044905656024585796, guid: bb7aa8703285c474ea77fecb3d36818d,
@@ -529,6 +518,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 8111339148422905696}
+    - target: {fileID: 9044905656024585796, guid: bb7aa8703285c474ea77fecb3d36818d,
+        type: 3}
+      propertyPath: m_EnableUIInteraction
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb7aa8703285c474ea77fecb3d36818d, type: 3}
 --- !u!4 &9045656355941214573 stripped

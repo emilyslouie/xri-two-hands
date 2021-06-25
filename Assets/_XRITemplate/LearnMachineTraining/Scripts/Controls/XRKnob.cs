@@ -122,6 +122,7 @@ namespace Unity.XRContent.Interaction
 
         bool m_PositionDriven = false;
         bool m_UpVectorDriven = false;
+        public bool TrackPosition = false;
 
         TrackedRotation m_PositionAngles = new TrackedRotation();
         TrackedRotation m_UpVectorAngles = new TrackedRotation();

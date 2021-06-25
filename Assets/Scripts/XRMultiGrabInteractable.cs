@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -16,20 +17,18 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
     [SerializeField]
     float m_Dot;
 
-    [SerializeField]
-    bool m_ShortWay;
+    public enum SlerpMethod
+    {
+        BuiltIn,
+        Alternate,
+        Hybrid,
+    }
 
     [SerializeField]
-    int m_SlerpMethod;
+    SlerpMethod m_SlerpMethod;
 
     [SerializeField]
-    bool m_InverseQuaternion0;
-    [SerializeField]
-    bool m_InverseQuaternion1;
-    [SerializeField]
-    bool m_InverseQuaternionSlerp;
-    [SerializeField]
-    bool m_InverseQuaternionFinal;
+    bool m_SlerpShortWay;
 
     readonly List<Pose> k_InteractorPoses = new List<Pose>();
     protected List<Pose> interactorPoses => k_InteractorPoses;
@@ -182,10 +181,6 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
                 // Put final pose into primary transform space
                 attachTransform.position = attachTransform.position + (primaryTransform.position - finalPose.position);
                 attachTransform.rotation = attachTransform.rotation * Quaternion.Inverse(Quaternion.Inverse(primaryTransform.rotation) * finalPose.rotation);
-                if (m_InverseQuaternionFinal)
-                {
-                    attachTransform.rotation = Quaternion.Inverse(attachTransform.rotation);
-                }
             }
         }
 
@@ -208,13 +203,7 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
 
         // Average positions and rotations together
         var position = Vector3.Lerp(influences[0].position, influences[1].position, m_LerpParameter);
-        var rotation0 = m_InverseQuaternion0 ? Quaternion.Inverse(influences[0].rotation) : influences[0].rotation;
-        var rotation1 = m_InverseQuaternion1 ? Quaternion.Inverse(influences[1].rotation) : influences[1].rotation;
-        //var rotation = m_Dot < 0f ? Slerp(rotation0, rotation1, m_LerpParameter, m_ShortWay) : Quaternion.Slerp(rotation0, rotation1, m_LerpParameter);
-        //var rotation = m_SlerpMethod == 0 ? Quaternion.Slerp(rotation0, rotation1, m_LerpParameter) : Slerp(rotation0, rotation1, m_LerpParameter, m_ShortWay);
-        var rotation = Slerp(rotation0, rotation1, m_LerpParameter);
-        if (m_InverseQuaternionSlerp)
-            rotation = Quaternion.Inverse(rotation);
+        var rotation = Slerp(influences[0].rotation, influences[1].rotation, m_LerpParameter);
         var finalPose = new Pose(position, rotation);
 
         return finalPose;
@@ -260,12 +249,14 @@ public class XRMultiGrabInteractable : XRGrabInteractable, IMultiInteractable
     {
         switch (m_SlerpMethod)
         {
-            case 0:
-                return m_Dot < 0f ? Slerp(p, q, t, m_ShortWay) : Quaternion.Slerp(p, q, t);
-            case 1:
+            case SlerpMethod.BuiltIn:
                 return Quaternion.Slerp(p, q, t);
+            case SlerpMethod.Alternate:
+                return Slerp(p, q, t, m_SlerpShortWay);
+            case SlerpMethod.Hybrid:
+                return m_Dot < 0f ? Slerp(p, q, t, m_SlerpShortWay) : Quaternion.Slerp(p, q, t);
             default:
-                return Slerp(p, q, t, m_ShortWay);
+                throw new NotImplementedException("Invalid SlerpMethod");
         }
     }
 
