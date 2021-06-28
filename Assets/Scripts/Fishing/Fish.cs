@@ -2,7 +2,6 @@
 using TMPro;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.Switch;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(Rigidbody))]

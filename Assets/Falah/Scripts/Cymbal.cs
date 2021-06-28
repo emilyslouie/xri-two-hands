@@ -23,7 +23,7 @@ public class Cymbal : MonoBehaviour
       if (other.transform.GetComponent<Cymbal>() != null)
       {
         cymbalAudio.Play();
-        Debug.Log("cymbal hit");
+        //Debug.Log("cymbal hit");
       }
     }
 }

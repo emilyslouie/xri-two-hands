@@ -37,4 +37,13 @@ public class GenerateBallPit : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+      {
+        //Debug.Log("hit: " + other.gameObject.name);
+        if (other.gameObject.name.Contains("Ball"))
+        {
+          Destroy(other.gameObject);
+        }
+      }
 }

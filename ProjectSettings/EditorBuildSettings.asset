@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SimpleScene.unity
     guid: e3c8ef4766439274db60f2796fc94fd1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BowScene.unity
     guid: fbf582f49fef14b97b93c83c6b616729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/HallOfSamples.unity
     guid: 58a6a21009f651740bddf61f1a073039
   m_configObjects:

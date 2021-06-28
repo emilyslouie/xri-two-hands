@@ -145,9 +145,11 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: -672919378657985028, guid: 524c6813265e8464cbaeaa0580100e30, type: 2}
-  - {fileID: -1527260819644534409, guid: 63b9f3b573383ff41af30286345a266e, type: 2}
   - {fileID: 0}
+  - {fileID: 11400000, guid: b7cabac1ad843e046983e3cd49b1574e, type: 2}
+  - {fileID: 0}
+  - {fileID: -1290736922872073020, guid: 524c6813265e8464cbaeaa0580100e30, type: 2}
+  - {fileID: 9016195988560887561, guid: 63b9f3b573383ff41af30286345a266e, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -166,6 +168,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DefaultCompany.XRISandbox
+    Standalone: com.DefaultCompany.XRISandbox
   buildNumber:
     Standalone: 0
     iPhone: 0
