@@ -8,4 +8,6 @@ Below is a demo of all the interactions featured in this repo:
 
 https://user-images.githubusercontent.com/52092223/126919092-1e9fa9ea-c412-42b7-9c12-ff3bbe0aa892.mp4
 
+You can try it yourself on Oculus Quest 2 by downloading the build [here](https://drive.google.com/file/d/1JBww-QOU9O5tGu4pZjiGOaWTlVwzdslC/view?usp=sharing).
+
 Moving forward, I hope to integrate some of these concepts and ideas into future projects to create more realistic and flexible interactions in XR. 
